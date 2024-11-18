@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Required Libraries
-This project requires the folling libaries:
+This project requires the following libaries:
 ```{r, message=FALSE}
 # Install Required package
 for (package in c("here", 
@@ -22,11 +22,8 @@ for (package in c("here",
   }
 }
   
-library(here)
-library(knitr)
 library(ggplot2)
 library(dplyr)
-
 ```
 
 # Introduction
@@ -45,7 +42,7 @@ Our primary objective is to understand the impact of various clinical features o
 ### Detailed Description of each variable:
 1) ID: unique identifier
 2) N_Days: number of days between registration and the earlier of death, transplantation, or study analysis time in July 1986
-3) Status: status of the patient C (censored), CL (censored due to liver tx), or D (death)
+3) Status: status of the patient C (censored), CL (censored due to liver tx), or D (death). For the purpose of our analysis, CL was standardized as C.
 4) Drug: type of drug D-penicillamine or placebo
 5) Age: age in [days]
 6) Sex: M (male) or F (female)
@@ -65,49 +62,28 @@ Our primary objective is to understand the impact of various clinical features o
 20) Stage: histologic stage of disease (1, 2, 3, or 4)
 
 
-
-
-### Load Data
+### Set Project Folder
 ```{r load-data}
-here::i_am("Data550_FinalProject.Rmd")
-projDir = here::here()
-setwd(projDir)
-df = read.csv("data/cirrhosis.csv")
-# Display the first few rows of the dataset
-head(df)
+here::i_am("final_report.Rmd")
 ```
 
-### Table: Descriptive Statistics
+### Tables: Descriptive Statistics
 The following table provides an overview of the clinical features present in the dataset, including demographic details like age and sex, and clinical markers such as bilirubin, albumin, and cholesterol levels. 
 
 Numeric Variables
-```{r}
-# Separate numeric (continuous/count) and categorical variables
-categorical_vars <- df %>% select_if(~!is.numeric(.))
-numeric_vars <- df %>% select_if(is.numeric)
-
-# Create summary tables
-numeric_summary <- sapply(numeric_vars, function(x) {
-  c(
-    mean = round(mean(x, na.rm = TRUE),1),
-    min = round(min(x, na.rm = TRUE),1),
-    median = round(median(x, na.rm = TRUE),1),
-    max = round(max(x, na.rm = TRUE),1),
-    n_NAs = round(sum(is.na(x)),1)
-  )
-})
-# Display the summary tables in a well-formatted manner
-kable(numeric_summary, caption = "Summary of Numeric Clinical Features in Cirrhosis Prediction Dataset")
+```{r, echo=FALSE}
+numeric_table = readRDS(
+  here::here("outputs/table_numeric.rds")
+)
+numeric_table
 ```
 
 Categorical Variables
-```{r}
-categorical_summary <- lapply(categorical_vars, function(x) {
-  as.data.frame(table(x))
-})
-
-combined_categorical_summary <- do.call(rbind, categorical_summary)
-kable(combined_categorical_summary)
+```{r, echo=FALSE}
+categorical_table = readRDS(
+  here::here("outputs/table_categorical.rds")
+)
+categorical_table
 ```
 
 
@@ -118,33 +94,34 @@ The following figure illustrates the distribution of patient age across differen
 
 From this box plot, we can find that the median ages across the three survival states are similar, roughly between 19,000 and 20,000 days.
 The age distribution in the "CL" state is somewhat narrower compared to the "C" and "D" states, suggesting a more concentrated age range in this state. Besides, the age distributions in the "C" and "D" states are broader with similar interquartile ranges, indicating greater age variability in these states. Overall, there is some overlap in the age distributions across the three states, suggesting that age may not be the sole or most critical factor distinguishing these conditions.
-```{r}
-# Boxplot showing age distribution by survival state
-ggplot(df, aes(x = Status, y = Age)) +
-  geom_boxplot() +
-  labs(title = "Age Distribution by Survival State",
-       x = "Survival State",
-       y = "Age (Days)")
-
+```{r, echo=FALSE}
+Age_by_Survival = readRDS(here::here("outputs/plot_ageByState.rds"))
+Age_by_Survival
 ```
 
 ### More: Histograms of N_Days and Age
 ```{r histograms, fig.width=7, fig.height=5, message=FALSE}
-# Histogram of N_Days
-ggplot(df, aes(x = N_Days)) +
-  geom_histogram(binwidth = 100,  color = "black", alpha = 0.7) +
-  labs(title = "Histogram of N_Days",
-       x = "Number of Days",
-       y = "Frequency")
+HIST_N_Days = readRDS(here::here("outputs/plot_NDaysHIST.rds"))
+HIST_N_Days
+HIST_Age = readRDS(here::here("outputs/plot_AgeHIST.rds"))
+HIST_Age
+```
 
-# Histogram of Age
-ggplot(df, aes(x = Age)) +
-  geom_histogram(binwidth = 500, color = "black", alpha = 0.7) +
-  labs(title = "Histogram of Age",
-       x = "Age (Days)",
-       y = "Frequency")
+### More: Kaplan-Meier (K-M) plot for overall survival and survival across treatment groups
+We also want to check the overall survival of patients and survival by treatment, using K-M plots.
+```{r, echo=FALSE}
+KM_Overall = readRDS(file = here::here("outputs/plot_KMOverall.rds"))
+KM_Overall
+# knitr::include_graphics("outputs/plot_KMOverall.png")
+```
+
+```{r, echo=FALSE}
+KM_byTrt = readRDS(file = here::here("outputs/plot_KMbyTrt.rds"))
+KM_byTrt
+# knitr::include_graphics("outputs/plot_KMbyTrt.png")
 ```
 
 
-
 This initial analysis presents an overview of the Cirrhosis Prediction Dataset and provides some preliminary insights into patient demographics and outcomes. In subsequent analyses, we will further explore the relationships between different clinical features and their impact on survival and cirrhosis progression.
+
+
