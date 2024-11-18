@@ -15,7 +15,7 @@ Our primary objective is to understand the impact of various clinical features o
 We aim to conduct a descriptive analysis on summarizing the numeric and categorical features in cirrhosis dataset, and visualize the distribution of Age by Survival State, Number of Days before event, and the age distribution itself. Also, we quickly checked the overall survival of patients and survival by treatment, using K-M plots.
 
 ## Final Report
-Our final report will include detailed decription of dataset and its variables, the descriptive statistics and in the future, the statistical data analysis.
+Our final report will include detailed decription of dataset and its variables, the descriptive statistics and in the future, the statistical data analysis. The user can create the report by using command `make final_report.html` in command line, or simply `make`.
 
 ------------------------------------------------------------------------
 
