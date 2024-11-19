@@ -132,12 +132,12 @@ surv_data_overall <- data.frame(
 )
 KM_Overall =
   ggplot(surv_data_overall, aes(x = time)) +
-  geom_line(aes(y = surv), colour = "blue", size = 1) +  # 生存曲线
+  geom_line(aes(y = surv), colour = "blue", linewidth = 1) +  # 生存曲线
   geom_ribbon(aes(ymin = lower, ymax = upper), fill = "blue", alpha = 0.2) +  # 置信区间
   labs(x = "Time from Treatment Administration (Days)",
        y = "Survival Probability",
        title = "K-M Plot - Overall Survival") +
-  geom_line(aes(y = surv, colour = "KM estimate"), size = 1) +
+  geom_line(aes(y = surv, colour = "KM estimate"), linewidth = 1) +
   geom_ribbon(aes(ymin = lower, ymax = upper, fill = "95% CI"), alpha = 0.2) +
   scale_color_manual(name = "Legend", values = c("KM estimate" = "blue")) +
   scale_fill_manual(name = "", values = c("95% CI" = "blue"))
@@ -192,7 +192,7 @@ ggsave("outputs/plot_KMbyTrt.png")
 # surv_data_byTrt <- do.call(rbind, surv_data_list)
 # KM_byTrt =
 #   ggplot(surv_data_byTrt, aes(x = time, y = surv, color = strata, fill = strata)) +
-#   geom_line(size = 1) +
+#   geom_line(linewidth = 1) +
 #   geom_ribbon(aes(ymin = lower, ymax = upper), alpha = 0.2) +
 #   labs(x = "Time from Treatment Administration (Days)",
 #        y = "Survival Probability",
