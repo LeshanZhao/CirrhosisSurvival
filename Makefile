@@ -39,4 +39,4 @@ clean:
 	rm -f *.pdf
 
 install:
-    Rscript -e "renv::restore(prompt = FALSE)"
+	Rscript -e "renv::restore(prompt = FALSE)"
