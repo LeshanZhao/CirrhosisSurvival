@@ -31,10 +31,12 @@ codes/01_descriptive.R outputs/data_clean.rds
 	Rscript codes/01_descriptive.R
 
 
-.PHONY: clean
+.PHONY: clean install
 clean:
 	rm -f outputs/*.rds && \
 	rm -f outputs/*.png && \
 	rm -f *.html && \
 	rm -f *.pdf
-	
+
+install:
+    Rscript -e "renv::restore(prompt = FALSE)"

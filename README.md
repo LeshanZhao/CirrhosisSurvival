@@ -19,6 +19,17 @@ Our final report will include detailed decription of dataset and its variables, 
 
 ------------------------------------------------------------------------
 
+## Usage:
+
+#### Create Report
+To create the report, the user can run command `make final_report.html` in command line, or simply `make`, under the project root directory.
+
+#### Synchronize Package Repository
+To synchronize the package repository, the user can run `make install` under the project root directory; 
+- Or, alternatively, go to project root directory and run `source("renv/activate.R")` followed by `renv::restore()` in R console.
+
+------------------------------------------------------------------------
+
 ## Code Structure
 
 `codes/00_clean_data.R`
