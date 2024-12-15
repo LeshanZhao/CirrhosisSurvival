@@ -2,7 +2,7 @@
 # Data Science Project: Survival Analysis in Clinical Trial for Cirrhosis Treatment
 
 Author: Leshan Zhao
-Last updated: 17 Nov 2024
+Last updated: 15 Dec 2024
 
 ## Data
 The data for this project contains is from Cirrhosis Clinical Trial Dataset obtained from Kaggle, containing 18 clinical features used to predict the survival state of patients with liver cirrhosis, including demographic details like age and sex, and clinical markers such as urine Albumin, Copper, and alkaline phosphatase levels. The dataset was created to analyze the effects of prolonged liver damage, which often results from conditions such as hepatitis or chronic alcohol consumption. This study aims to explore the relationships between clinical variables and patient survival outcomes, as well as to identify key predictors for liver cirrhosis stage.
@@ -18,15 +18,50 @@ We aim to conduct a descriptive analysis on summarizing the numeric and categori
 Our final report will include detailed decription of dataset and its variables, the descriptive statistics and in the future, the statistical data analysis. The user can create the report by using command `make final_report.html` in command line, or simply `make`.
 
 ------------------------------------------------------------------------
+Prerequisites: GNU make
+------------------------------------------------------------------------
 
-## Usage:
+## Usage: (Recommended) 
+- Option 1: Run workflow in Docker. 
+- Extra prerequisites: Docker
 
 #### Create Report
-To create the report, the user can run command `make final_report.html` in command line, or simply `make`, under the project root directory.
+To create the report, the user can run command 
+- `make report/final_report.html` in command line, or simply
+- `make`, under the project root directory.
+- The generated report will be found in the `/report` folder under  project root directory.
+- Windows CMD is recommended; 
+- Windows Powershell / Windows Git Bash and MAC/Unix-like shells are also supported.
+
+##### IMPORTANT: For MAC/Linux/Other Unix users , the user should add a parameter `OS=MAC` when running make. Possible command include:
+- `make OS=MAC`
+- `make report/final_report.html OS=MAC`
+- `make OS=MAC report/final_report.html`
+
 
 #### Synchronize Package Repository
 To synchronize the package repository, the user can run `make install` under the project root directory; 
 - Or, alternatively, go to project root directory and run `source("renv/activate.R")` followed by `renv::restore()` in R console.
+- This step is completely not required under this option.
+
+####  How to Build the Docker image
+If the user wants to build the docker image locally, the user can run command 
+- `make final_proj_img` in command line, under the project root directory.
+
+------------------------------------------------------------------------
+
+## Usage: 
+- Option 2: Run workflow locally.
+
+#### Create Report
+To create the report by running the workflow locally, the user can run command `make final_report.html` in command line, under the project root directory.
+- The generated report will be found in the project root directory.
+
+#### Synchronize Package Repository
+To synchronize the package repository, the user can run `make install` under the project root directory; 
+- Or, alternatively, go to project root directory and run `source("renv/activate.R")` followed by `renv::restore()` in R console.
+- This step is not required explicitly.
+
 
 ------------------------------------------------------------------------
 
