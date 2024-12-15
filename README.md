@@ -33,7 +33,7 @@ To create the report, the user can run command
 - Windows CMD is recommended; 
 - Windows Powershell / Windows Git Bash and MAC/Unix-like shells are also supported.
 
-##### IMPORTANT: For MAC/Linux/Other Unix users , the user should add a parameter `OS=MAC` when running make. Possible command include:
+# IMPORTANT: For MAC/Linux/Other Unix users , the user should add a parameter `OS=MAC` when running make. Possible command include:
 - `make OS=MAC`
 - `make report/final_report.html OS=MAC`
 - `make OS=MAC report/final_report.html`
