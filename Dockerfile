@@ -13,7 +13,7 @@ COPY renv/settings.json renv
 RUN mkdir renv/.cache
 ENV RENV_PATHS_CACHE=renv/.cache
 
-RUN R -e "renv::restore()"
+RUN R -e 'renv::restore()'
 
 
 #copy all relevant files 

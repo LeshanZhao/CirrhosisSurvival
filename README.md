@@ -16,11 +16,15 @@ We aim to conduct a descriptive analysis on summarizing the numeric and categori
 
 ## Final Report
 Our final report will include detailed decription of dataset and its variables, the descriptive statistics and in the future, the statistical data analysis. The user can create the report by using command `make final_report.html` in command line, or simply `make`.
-
 ------------------------------------------------------------------------
-Prerequisites: GNU make
+!!! This Docker-R automatic workflow is designed for WINDOWS !!!
 ------------------------------------------------------------------------
-
+Prerequisites: 
+- GNU make
+- Windows Operating System
+- (MAC/Unix-Like System is not guaranteed to work.)
+------------------------------------------------------------------------
+------------------------------------------------------------------------
 ## Usage: (Recommended) 
 - Option 1: Run workflow in Docker. 
 - Extra prerequisites: Docker
@@ -47,7 +51,7 @@ To synchronize the package repository, the user can run `make install` under the
 ####  How to Build the Docker image
 If the user wants to build the docker image locally, the user can run command 
 - `make final_proj_img` in command line, under the project root directory.
-
+- 
 ------------------------------------------------------------------------
 
 ## Usage: 
